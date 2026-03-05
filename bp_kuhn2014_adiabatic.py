@@ -9,6 +9,9 @@ def blueprint(model: ModelType = "both", final_x: FinalX = 10.0, max_T: MaxT = 1
     submit_job(
         task_name="Kuhn2014: Adiabatic Preparation (Figs 3-4)",
         description="Simulate adiabatic preparation of the Schwinger model ground state using cubic ramp x(t) = xF*(t/T)^3. Computes overlap with exact ground state. Reproduces Figures 3-4 from Kuhn, Cirac, Banuls (2014).",
-        entry_command="pip install numpy scipy matplotlib && cd reproduction && python3 fig3_adiabatic_cqed.py && python3 fig4_adiabatic_zd.py",
+        repo_name="magnus-skills",
+        branch="kuhn2014",
+        commit_sha="297ae93a14c1a81ce7aecf3d70c3f1a3851ba715",
+        entry_command="cd submit_Kuhn_2014 && pip install numpy scipy matplotlib && cd reproduction && python3 fig3_adiabatic_cqed.py && python3 fig4_adiabatic_zd.py",
         container_image="docker://pytorch/pytorch:2.5.1-cuda12.4-cudnn9-runtime",
     )
