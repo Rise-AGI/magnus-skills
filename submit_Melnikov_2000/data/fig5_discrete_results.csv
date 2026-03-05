@@ -1,0 +1,6 @@
+derivative,W_numerical,W_analytical
+Naive,-2.00000000,-2.0
+Wilson_r0.5,-1.99998429,-2.0
+Wilson_r1.0,-1.99996858,-2.0
+Wilson_r2.0,-1.99993717,-2.0
+SLAC,,-1.0
