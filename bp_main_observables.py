@@ -11,5 +11,7 @@ def blueprint(n_mc: McSteps = 5000, n_eq: EqSteps = 2000, seed: Seed = 42):
         task_name="Kotze 2008: Main Observables (Figs 7-9, 14)",
         description="2D Ising Monte Carlo for L=2,4,8,16. Produces energy, heat capacity, magnetization, susceptibility vs temperature.",
         container_image=ContainerImage,
-        entry_command=f"pip install numpy scipy matplotlib && cd /tmp && git clone https://github.com/Rise-AGI/magnus-skills.git -b kotze2008 repo && cd repo/submit_Kotze_2008/reproduction && python3 fig_main_observables.py",
+        repo_name="magnus-skills",
+        branch="kotze2008",
+        entry_command="python3 -m pip install --break-system-packages numpy scipy matplotlib && cd submit_Kotze_2008/reproduction && MPLBACKEND=Agg python3 fig_main_observables.py",
     )

@@ -10,5 +10,7 @@ def blueprint(n_mc: McSteps = 4000, seed: Seed = 42):
         task_name="Kotze 2008: Finite Size Scaling (Figs 19-21)",
         description="Finite size scaling analysis for 2D Ising model: critical exponents, reduced-unit collapse, and Binder cumulant intersection for Tc determination. Lattices L=4,8,16,32.",
         container_image=ContainerImage,
-        entry_command=f"pip install numpy scipy matplotlib && cd /tmp && git clone https://github.com/Rise-AGI/magnus-skills.git -b kotze2008 repo && cd repo/submit_Kotze_2008/reproduction && python3 fig_fss.py",
+        repo_name="magnus-skills",
+        branch="kotze2008",
+        entry_command="python3 -m pip install --break-system-packages numpy scipy matplotlib && cd submit_Kotze_2008/reproduction && MPLBACKEND=Agg python3 fig_fss.py",
     )
