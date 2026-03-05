@@ -1,0 +1,8 @@
+# Conservation quantity comparison: |N_initial - N_final| after 8 time steps
+# SS: L=64, N=512, tau=0.01; FD: L=30, N=512, tau=0.001
+S,delta_N_splitstep,delta_N_finitediff
+-0.10000000,0.00000000,0.00060751
+0.00000000,0.00000000,0.00068825
+0.40000000,0.00000000,0.00147044
+-10.00000000,0.00000000,0.00004694
+2.00000000,0.00007610,43816.87615812

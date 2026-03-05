@@ -89,7 +89,8 @@ def init_one_soliton(x_off, v, L, N, S):
 
 def compute_norm(psi, dx):
     """Compute the integral of |psi|^2 using trapezoidal rule."""
-    return np.trapz(np.abs(psi)**2, dx=dx)
+    _trapz = getattr(np, 'trapezoid', getattr(np, 'trapz', None))
+    return _trapz(np.abs(psi)**2, dx=dx)
 
 
 # ============================================================
