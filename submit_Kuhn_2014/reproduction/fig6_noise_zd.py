@@ -15,10 +15,10 @@ from schwinger_ed import noisy_adiabatic_evolution
 
 # Parameters
 N_values = [4]
-d_values = [3, 5]
+d_values = [3]
 xF = 10.0
-T = 100.0
-n_steps = 300
+T = 80.0
+n_steps = 100
 lambda_values = [0, 1e-4, 5e-4, 1e-3, 3e-3]
 
 results = {}

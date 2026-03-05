@@ -11,7 +11,7 @@ def blueprint(model: ModelType = "both", max_d: MaxD = 7, max_n: MaxN = 8):
         description="Compute ground state energy density and energy gap for the Schwinger model with finite-dimensional link variables using exact diagonalization. Reproduces Figures 1 and 2 from Kuhn, Cirac, Banuls (2014).",
         repo_name="magnus-skills",
         branch="kuhn2014",
-        commit_sha="297ae93a14c1a81ce7aecf3d70c3f1a3851ba715",
+        commit_sha="d8171e6baef7a88dacbee1157a0573bd7c9774b2",
         entry_command="cd submit_Kuhn_2014 && pip install numpy scipy matplotlib && cd reproduction && python3 fig1_energy_density.py && python3 fig2_energy_gap.py",
         container_image="docker://pytorch/pytorch:2.5.1-cuda12.4-cudnn9-runtime",
     )
