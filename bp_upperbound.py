@@ -11,18 +11,18 @@ def blueprint(
 ):
     submit_job(
         task_name="Hasegawa 2004: Upper Bound Transmittance Tu vs R",
+        repo_name="magnus-skills",
+        branch="hasegawa2004",
+        commit_sha="7956432a3e63ebeac0518d07f1b6ab7e3640963d",
         description=(
             "Compute SPP upper bound transmittance Tu as a function of bend radius R "
             "for silver-air interface. Reproduces Figure 2 from Hasegawa et al., "
             "Appl. Phys. Lett. 84, 1835 (2004)."
         ),
         entry_command=(
-            "pip install numpy scipy matplotlib mpmath && "
-            "cd /tmp && "
-            "git clone https://github.com/Rise-AGI/magnus-skills.git repo 2>/dev/null || true && "
-            "cd repo && git checkout hasegawa2004 2>/dev/null || true && "
+            "python3 -m pip install numpy scipy matplotlib mpmath && "
             "cd reproduction && "
-            f"python3 fig2_transmittance_bound.py"
+            "python3 fig2_transmittance_bound.py"
         ),
         container_image="docker://git.pku.edu.cn/2200011363/knowledge-distiller:latest",
     )

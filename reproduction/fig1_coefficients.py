@@ -10,6 +10,10 @@ import sys, os
 sys.path.insert(0, os.path.dirname(__file__) if '__file__' in dir() else '.')
 
 import numpy as np
+try:
+    np_trapezoid = np.trapezoid
+except AttributeError:
+    np_trapezoid = np.trapz
 import mpmath
 import matplotlib
 matplotlib.use('Agg')
@@ -93,8 +97,8 @@ for orc in orc_values:
 
     flat_field = np.exp(-gamma_o * (r_arr - R_val))
     diff = cyl_field - flat_field
-    num = np.trapz(np.abs(diff)**2, r_arr)
-    den = np.trapz(np.abs(flat_field)**2, r_arr)
+    num = np_trapezoid(np.abs(diff)**2, r_arr)
+    den = np_trapezoid(np.abs(flat_field)**2, r_arr)
     D2 = (num / den).real
 
     delta2_list.append(D2)

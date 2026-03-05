@@ -13,18 +13,18 @@ def blueprint(
 ):
     submit_job(
         task_name="Hasegawa 2004: SPP Scattering Coefficients",
+        repo_name="magnus-skills",
+        branch="hasegawa2004",
+        commit_sha="7956432a3e63ebeac0518d07f1b6ab7e3640963d",
         description=(
             "Compute T, R, radiation loss P, upper bound Tu, coupling efficiency, "
             "and field profiles for SPP propagation around a metallic bend. "
             "From Hasegawa et al., Appl. Phys. Lett. 84, 1835 (2004)."
         ),
         entry_command=(
-            "pip install numpy scipy matplotlib mpmath && "
-            "cd /tmp && "
-            "git clone https://github.com/Rise-AGI/magnus-skills.git repo 2>/dev/null || true && "
-            "cd repo && git checkout hasegawa2004 2>/dev/null || true && "
+            "python3 -m pip install numpy scipy matplotlib mpmath && "
             "cd reproduction && "
-            f"python3 fig1_coefficients.py"
+            "python3 fig1_coefficients.py"
         ),
         container_image="docker://git.pku.edu.cn/2200011363/knowledge-distiller:latest",
     )

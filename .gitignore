@@ -12,3 +12,7 @@ venv/
 # due to using nox and pytest
 .nox
 .cache
+secrets.yaml
+paper.pdf
+mineru_output/
+layout.json
