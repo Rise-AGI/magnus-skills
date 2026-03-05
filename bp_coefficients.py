@@ -15,14 +15,14 @@ def blueprint(
         task_name="Hasegawa 2004: SPP Scattering Coefficients",
         repo_name="magnus-skills",
         branch="hasegawa2004",
-        commit_sha="7956432a3e63ebeac0518d07f1b6ab7e3640963d",
+        commit_sha="45d86ae3fc57664f302b5697db69f10727d954c6",
         description=(
             "Compute T, R, radiation loss P, upper bound Tu, coupling efficiency, "
             "and field profiles for SPP propagation around a metallic bend. "
             "From Hasegawa et al., Appl. Phys. Lett. 84, 1835 (2004)."
         ),
         entry_command=(
-            "python3 -m pip install numpy scipy matplotlib mpmath && "
+            "python3 -m pip install --break-system-packages numpy scipy matplotlib mpmath && "
             "cd reproduction && "
             "python3 fig1_coefficients.py"
         ),
