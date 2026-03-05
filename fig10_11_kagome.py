@@ -65,6 +65,7 @@ with open('../data/fig13_confinement.csv', 'w') as f:
         f.write(f'{wavelengths[i]:.4f},{c_A[i]:.8e},{c_B[i]:.8e}\n')
 
 # ---- Plot Fig 10: Re(n_eff) ----
+os.makedirs('../plots', exist_ok=True)
 fig, ax = plt.subplots(1, 1, figsize=(10, 5))
 ax.plot(wavelengths, results['A'][0], 'b-', label='19-cell (Layout A)')
 ax.plot(wavelengths, results['B'][0], 'r-', label='1-cell (Layout B)')

@@ -141,6 +141,7 @@ for row, (strategy, label) in enumerate(zip(strategies, strategy_labels)):
     ax_imag.grid(True, alpha=0.3)
 
 plt.tight_layout()
+os.makedirs('../plots', exist_ok=True)
 plt.savefig('../plots/fig4_convergence.png', dpi=150, bbox_inches='tight')
 plt.close()
 

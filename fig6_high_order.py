@@ -92,6 +92,7 @@ for ax, title in zip(axes, ['Re(n_eff)', 'Im(n_eff)']):
     ax.grid(True, alpha=0.3)
 
 plt.tight_layout()
+os.makedirs('../plots', exist_ok=True)
 plt.savefig('../plots/fig6_high_order.png', dpi=150, bbox_inches='tight')
 plt.close()
 

@@ -131,6 +131,7 @@ axes[1, 2].axis('off')
 
 plt.suptitle('Im(n_eff) vs geometric parameters (HCPCF)', fontsize=14, y=1.02)
 plt.tight_layout()
+os.makedirs('../plots', exist_ok=True)
 plt.savefig('../plots/fig8_parameter_scan.png', dpi=150, bbox_inches='tight')
 plt.close()
 
