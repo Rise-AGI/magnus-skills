@@ -1,0 +1,9 @@
+# Figure 6: K_c from cumulant crossing technique vs L_min (2 correction terms)
+# Two correction terms data from Table VIII
+# Columns: L_min, Kc_2corr, Kc_2corr_err
+L_min,Kc_2corr,Kc_2corr_err
+16,0.22165462483,9.50e-10
+24,0.22165462490,1.00e-09
+32,0.22165462450,8.00e-10
+48,0.22165462463,8.50e-10
+64,0.22165462540,1.00e-09
