@@ -23,5 +23,5 @@ def blueprint(
             f"cd submit_Huttunen_2003/reproduction && "
             f"MPLBACKEND=Agg python3 fig1_bandstructure.py"
         ),
-        container_image="docker://git.pku.edu.cn/2200011363/knowledge-distiller:latest",
+        container_image="docker://pytorch/pytorch:2.5.1-cuda12.4-cudnn9-runtime",
     )
