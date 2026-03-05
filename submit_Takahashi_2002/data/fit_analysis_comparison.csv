@@ -1,0 +1,6 @@
+# Fit analysis: Y-ansatz vs Delta-ansatz
+beta,ansatz,sigma,A,C,chi2_NDF
+5.7,Y-ansatz,0.152395,0.133123,0.918432,3.8103
+5.7,Delta-ansatz,0.085748,0.141090,0.934860,10.2069
+5.8,Y-ansatz,0.101740,0.124275,0.911767,2.6362
+5.8,Delta-ansatz,0.057999,0.123118,0.906750,8.0235
