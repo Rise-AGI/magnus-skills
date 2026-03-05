@@ -15,6 +15,10 @@ import os
 sys.path.insert(0, os.path.dirname(os.path.abspath(os.path.realpath(sys.argv[0]))))
 from graphene_params import A_CC, T_HOP, T_PRIME, dos_numerical
 
+# Ensure output directories exist
+os.makedirs("../data", exist_ok=True)
+os.makedirs("../plots", exist_ok=True)
+
 
 def compute_dos(tp_val, n_k=800, n_bins=600):
     a = A_CC

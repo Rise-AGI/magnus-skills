@@ -15,6 +15,10 @@ import os
 sys.path.insert(0, os.path.dirname(os.path.abspath(os.path.realpath(sys.argv[0]))))
 from graphene_params import klein_tunneling_T
 
+# Ensure output directories exist
+os.makedirs("../data", exist_ok=True)
+os.makedirs("../plots", exist_ok=True)
+
 
 def compute_klein_tunneling():
     # Parameters from paper

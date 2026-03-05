@@ -14,6 +14,10 @@ import os
 sys.path.insert(0, os.path.dirname(os.path.abspath(os.path.realpath(sys.argv[0]))))
 from graphene_params import T_HOP, A_CC, GAMMA1
 
+# Ensure output directories exist
+os.makedirs("../data", exist_ok=True)
+os.makedirs("../plots", exist_ok=True)
+
 
 def bilayer_hamiltonian(kx, ky, V=0.0, gamma1=GAMMA1, gamma3=0.0, t=T_HOP):
     """Build 4x4 bilayer Hamiltonian at (kx, ky) near K point."""

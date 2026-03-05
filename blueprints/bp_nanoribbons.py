@@ -5,12 +5,13 @@ N_width = Annotated[int, {"label": "Ribbon width N", "description": "Number of u
 def blueprint(n_width: N_width = 200):
     submit_job(
         task_name="CastroNeto2009: Nanoribbon Spectra",
-        description="Compute energy spectra of zigzag and armchair graphene nanoribbons (Fig 17) from Castro Neto et al. Rev. Mod. Phys. 81, 109 (2009).",
+        description="Compute zigzag and armchair nanoribbon energy spectra (Fig 17) from Castro Neto et al. Rev. Mod. Phys. 81, 109 (2009).",
+        repo_name="magnus-skills",
+        namespace="Rise-AGI",
+        branch="castroneto2009",
         entry_command=(
             "pip install numpy scipy matplotlib && "
-            "cd /tmp && "
-            "git clone https://github.com/Rise-AGI/magnus-skills.git -b castroneto2009 --depth 1 && "
-            "cd magnus-skills/submit_CastroNeto_2009/reproduction && "
+            "cd submit_CastroNeto_2009/reproduction && "
             "MPLBACKEND=Agg python3 fig17_nanoribbons.py && "
             "echo 'Nanoribbon spectra computation complete'"
         ),

@@ -15,6 +15,10 @@ import os
 sys.path.insert(0, os.path.dirname(os.path.abspath(os.path.realpath(sys.argv[0]))))
 from graphene_params import T_HOP, A_CC
 
+# Ensure output directories exist
+os.makedirs("../data", exist_ok=True)
+os.makedirs("../plots", exist_ok=True)
+
 
 def zigzag_nanoribbon_spectrum(N, k_array):
     """Tight-binding spectrum for zigzag nanoribbon with N zigzag chains."""
