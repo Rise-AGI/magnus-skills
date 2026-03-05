@@ -10,11 +10,15 @@ def blueprint(max_L: LatticeSize = 32, n_measure: NMeasure = 50000):
         description=f"Wolff cluster MC simulation for 3D Ising model up to L={max_L}. "
                     f"Computes U_4 vs K via histogram reweighting and U_4 vs L "
                     f"self-consistency check. Reproduces Figs 5, 7 of Ferrenberg et al. (2018).",
+        repo_name="magnus-skills",
+        namespace="Rise-AGI",
+        branch="ferrenberg2018",
+        commit_sha="9432b9250c71470e62c7b71eaa9c420b1b02969b",
         entry_command=(
-            "pip install numpy scipy matplotlib && "
+            "cd submit_Ferrenberg_2018 && python3 -m pip install numpy scipy matplotlib && "
             "cd reproduction && export MPLBACKEND=Agg && "
             "python3 fig5_cumulant_crossing.py && "
             "python3 fig7_u4_consistency.py"
         ),
-        container_image="docker://git.pku.edu.cn/2200011363/knowledge-distiller:latest",
+        container_image="docker://pytorch/pytorch:2.5.1-cuda12.4-cudnn9-runtime",
     )

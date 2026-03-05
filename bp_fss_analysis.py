@@ -10,12 +10,16 @@ def blueprint(l_min: LMin = 16, num_corrections: NumCorrections = "3"):
         description=f"Finite-size scaling analysis of 3D Ising critical exponent nu and coupling Kc. "
                     f"Plots nu and Kc vs L_min with {num_corrections} correction exponent(s), "
                     f"starting from L_min={l_min}. Reproduces Figs 2-4 of Ferrenberg et al. (2018).",
+        repo_name="magnus-skills",
+        namespace="Rise-AGI",
+        branch="ferrenberg2018",
+        commit_sha="9432b9250c71470e62c7b71eaa9c420b1b02969b",
         entry_command=(
-            "pip install numpy scipy matplotlib && "
+            "cd submit_Ferrenberg_2018 && python3 -m pip install numpy scipy matplotlib && "
             "cd reproduction && export MPLBACKEND=Agg && "
             "python3 fig2_nu_scaling.py && "
             "python3 fig3_kc_one_correction.py && "
             "python3 fig4_kc_scaling.py"
         ),
-        container_image="docker://git.pku.edu.cn/2200011363/knowledge-distiller:latest",
+        container_image="docker://pytorch/pytorch:2.5.1-cuda12.4-cudnn9-runtime",
     )
