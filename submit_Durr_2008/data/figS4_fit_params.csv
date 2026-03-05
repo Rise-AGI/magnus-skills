@@ -1,0 +1,5 @@
+# Fit parameters for M_X(L) = M_inf + c_X * exp(-Mpi*L) / (Mpi*L)^{3/2}
+# Mpi_lat = 0.202706, a = 0.125 fm
+channel,M_inf,M_inf_err,c_X,c_X_err
+pion,0.20347887,0.00087456,0.60509950,0.40766497
+nucleon,0.60695701,0.00508330,3.47525032,2.44505696
