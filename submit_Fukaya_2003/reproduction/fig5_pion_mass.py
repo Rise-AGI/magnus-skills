@@ -1,10 +1,7 @@
 """
 Figure 5: Pion propagator in each topological sector and pion mass vs fermion mass.
 Reproduces Figs. 11 and 14 from Fukaya & Onogi (2003).
-
-Left: Pion propagator C_pi(x) in sectors N=0,1,2,3 at m=0.2.
-Right: Pion mass vs fermion mass m at theta=0.
-The mass is fitted to m_pi(m) = a * m^(2/3) + b.
+Fast version with reduced configs for time constraints.
 """
 import sys
 import os
@@ -25,14 +22,14 @@ os.makedirs("../plots", exist_ok=True)
 
 np.random.seed(42)
 
-# Parameters
-L = 8  # Use L=8 for feasibility (paper also checks L=8 for finite-size study)
+# Parameters - reduced for speed
+L = 8
 L3 = 6
 M = 0.9
 beta = 0.5
 epsilon = 1.0
-n_configs = 30  # Reduced for compute time
-n_therm = 30
+n_configs = 10  # Reduced from 30
+n_therm = 20
 
 # --- Part 1: Pion propagator per sector ---
 print("Measuring pion propagator in each sector...")
@@ -46,15 +43,12 @@ for N in sectors:
     theta1 += 0.005 * np.random.randn(L, L)
     theta2 += 0.005 * np.random.randn(L, L)
 
-    # Thermalize with pure gauge
     for i in range(n_therm):
         theta1, theta2, _ = metropolis_sweep_luscher(theta1, theta2, L, beta, epsilon)
 
-    # Measure
     C_avg = np.zeros(L)
     n_good = 0
     for cfg in range(n_configs):
-        # Update (pure gauge Metropolis as approximation to HMC)
         for _ in range(5):
             theta1, theta2, _ = metropolis_sweep_luscher(theta1, theta2, L, beta, epsilon)
 
@@ -63,8 +57,7 @@ for N in sectors:
             C_avg += C
             n_good += 1
 
-        if cfg % 10 == 0:
-            print(f"    Config {cfg}/{n_configs}", flush=True)
+        print(f"    Config {cfg}/{n_configs}", flush=True)
 
     if n_good > 0:
         C_avg /= n_good
@@ -99,8 +92,7 @@ for m_f in masses:
             C_samples.append(C.copy())
             n_good += 1
 
-        if cfg % 10 == 0:
-            print(f"    Config {cfg}/{n_configs}", flush=True)
+        print(f"    Config {cfg}/{n_configs}", flush=True)
 
     if n_good > 0:
         C_avg /= n_good
@@ -109,9 +101,9 @@ for m_f in masses:
     pion_masses.append(m_pi)
 
     # Bootstrap error estimate
-    if len(C_samples) > 5:
+    if len(C_samples) > 3:
         boot_masses = []
-        for _ in range(50):
+        for _ in range(20):
             indices = np.random.choice(len(C_samples), len(C_samples), replace=True)
             C_boot = np.mean([C_samples[i] for i in indices], axis=0)
             m_boot, _, _ = fit_correlator_mass(C_boot, L, fit_range=(5, 8))
@@ -136,19 +128,17 @@ except (RuntimeError, ValueError):
     print("Fit failed, using defaults")
 
 # --- Save data ---
-# Propagator data
 prop_data = np.column_stack([np.arange(L)] + [propagators[N] for N in sectors])
 header_prop = ("# Pion propagator C_pi(x) in each topological sector\n"
-               "# L=16, L3=6, M=0.9, beta=0.5, eps=1.0, m=0.2\n"
+               "# L=8, L3=6, M=0.9, beta=0.5, eps=1.0, m=0.2\n"
                "# Columns: x, C_pi_N0, C_pi_N1, C_pi_N2, C_pi_N3\n"
                "x,C_pi_N0,C_pi_N1,C_pi_N2,C_pi_N3")
 np.savetxt("../data/fig5_pion_propagator.csv", prop_data, delimiter=",",
            header=header_prop, comments="", fmt="%.8e")
 
-# Mass data
 mass_data = np.column_stack([masses, pion_masses, pion_errors])
 header_mass = ("# Pion mass vs fermion mass (theta=0, N=0 sector)\n"
-               "# L=16, L3=6, M=0.9, beta=0.5, eps=1.0\n"
+               "# L=8, L3=6, M=0.9, beta=0.5, eps=1.0\n"
                f"# Fit: m_pi = {a_fit:.6f} * m^(2/3) + {b_fit:.6f}\n"
                "m_fermion,m_pion,m_pion_err")
 np.savetxt("../data/fig5_pion_mass_vs_m.csv", mass_data, delimiter=",",
@@ -158,7 +148,6 @@ print("Saved data files")
 # --- Plot ---
 fig, axes = plt.subplots(1, 2, figsize=(14, 6))
 
-# Left: Propagator per sector
 for N in sectors:
     axes[0].semilogy(np.arange(L), np.abs(propagators[N]) + 1e-30,
                      'o-', label=f"$N={N}$")
@@ -168,7 +157,6 @@ axes[0].set_title(r"Pion propagator per sector ($m=0.2$)")
 axes[0].legend(fontsize=11)
 axes[0].grid(True, alpha=0.3)
 
-# Right: Pion mass vs m
 m_fine = np.linspace(0.05, 0.45, 100)
 axes[1].errorbar(masses, pion_masses, yerr=pion_errors, fmt='ko',
                  capsize=4, label="Lattice data")
